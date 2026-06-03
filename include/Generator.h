@@ -1,0 +1,13 @@
+/******************************************************************//**
+ * @file	Generator.h
+ * @author  Arkadiusz Hudzikowski
+ * @version 1.5
+ * @date	16.01.2013
+ * @brief plik naglowkowy podprogramu generatora
+ *********************************************************************/
+
+
+void Generator(void);
+void GenSetParam(uint16_t per, uint16_t tab, uint16_t gain, uint16_t duty, int16_t dc_shift, uint8_t type);
+void EepromTabWrite(uint8_t* e_wsk, uint8_t* wsk);
+void EepromTabRead(uint8_t* wsk, uint8_t* e_wsk);
