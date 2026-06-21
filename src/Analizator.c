@@ -124,11 +124,11 @@ uint8_t log2_u16(uint16_t n)
  * @param *tmp_w : adres bufora pomocniczego 64 probek 16-bitowych
  * @return none
  ***********************************************/
-void FFT2N(int16_t* xwsk, int16_t* tmp_w) //algorytm 2N FFT 1024 probki wejsciowe, rzeczywiste przekrzta³cenie z wykorzystaniem zespolonego FFT
+void FFT2N(int16_t* xwsk, int16_t* tmp_w) //algorytm 2N FFT 1024 probki wejsciowe, rzeczywiste przekrzta?cenie z wykorzystaniem zespolonego FFT
 {
 	//2N FFT
 	
-	uint16_t i1, i2, i3; //zmienne pomocnicze do tworzenia pêtli
+	uint16_t i1, i2, i3; //zmienne pomocnicze do tworzenia p?tli
 	int32_t xq, yq, xp, yp; //zmienne pomocnicze do operacji 32-bitowych
 	int32_t sinp, cosp; //zmienne przechowujace wartosc funkcji sinus i cosinus
 	int16_t* ywsk = xwsk+512; //dodatkowy bufor dla czesci urojonej umieszczony w drugiej polowie tablicy
@@ -243,11 +243,11 @@ void FFT2N(int16_t* xwsk, int16_t* tmp_w) //algorytm 2N FFT 1024 probki wejsciow
  * bufor wykorzystuje dodatkowo 128 probek pomocniczych, calkowita dlugosc bufora wynosi 384 probki 16-bitowe
  * @return none
  ***********************************************/
-/*void FFT2N128(int16_t* xwsk) //algorytm 2N FFT 1024 probki wejsciowe, rzeczywiste przekrzta³cenie z wykorzystaniem zespolonego FFT
+/*void FFT2N128(int16_t* xwsk) //algorytm 2N FFT 1024 probki wejsciowe, rzeczywiste przekrzta?cenie z wykorzystaniem zespolonego FFT
 {
 	//2N FFT
 	
-	uint16_t i1, i2, i3; //zmienne pomocnicze do tworzenia pêtli
+	uint16_t i1, i2, i3; //zmienne pomocnicze do tworzenia p?tli
 	int32_t xq, yq, xp, yp; //zmienne pomocnicze do operacji 32-bitowych
 	int32_t sinp, cosp; //zmienne przechowujace wartosc funkcji sinus i cosinus
 	int16_t* ywsk = xwsk+256; //dodatkowy bufor dla czesci urojonej umieszczony w drugiej polowie tablicy

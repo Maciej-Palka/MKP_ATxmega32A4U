@@ -26,7 +26,7 @@ extern const uint16_t Time_tab[15] PROGMEM;
 extern uint8_t e_kan_out[768];
 
 static int16_t ypos1 = 128, ypos2 = 128; //pozycja oscylogramow w pionie
-static int16_t xpos=62; //62 //wycentrowanie wyzwalania, gdy xpos=0 to wyzwalanie na œrodku ekranu
+static int16_t xpos=62; //62 //wycentrowanie wyzwalania, gdy xpos=0 to wyzwalanie na ?rodku ekranu
 static uint8_t Vdiv1=0, Vdiv2=0, Sdiv=7; //wzmonienie kanalow i podstawa czasu
 static uint8_t trig_type = 2; //wyzwalanie
 static int8_t lev = 0; //poziom wyzwalania
@@ -54,7 +54,7 @@ const uint8_t Gain_tab[10] PROGMEM ={
 #define Sinc_tab4   38
 #define Sinc_tab5   64
 
-//tablica sinc 19-wartoœci
+//tablica sinc 19-warto?ci
 #define Sinc_2tab0  0
 //#define Sinc_2tab1  0
 #define Sinc_2tab2  -1
