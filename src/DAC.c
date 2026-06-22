@@ -1,9 +1,9 @@
 /******************************************************************//**
  * @file	DAC.c
  * @author  Arkadiusz Hudzikowski
- * @version 1.5
- * @date	16.01.2013
- * @brief Plik obslugi przetwornika DAC.
+ * @version 1.5.1_U
+ * @date	2026 (Port dla ATxmega32A4U)
+ * @brief Plik obslugi przetwornika DAC dostosowany dla wersji U.
  *********************************************************************/
 #include<avr/io.h>
 #include <avr/eeprom.h>
@@ -27,9 +27,11 @@ void DACInit(void)
 	DACB.CTRLB = 0x01;  // CH0 auto triggered by an event (CH1)
 	DACB.CTRLC = (3<<3);  // Use external AREFB, right adjust
 	DACB.EVCTRL = 0x01; // Event CH1 triggers the DAC Conversion
-	DACB.TIMCTRL = (5<<4);// Minimum 32 CLK between conversions
-	DACB.OFFSETCAL=100;
-	DACB.GAINCAL=100;
+	//DACB.TIMCTRL = (5<<4);// Minimum 32 CLK between conversions
+    
+	// POPRAWKA DLA ATxmega32A4U: Rozdzielone rejestry kalibracji dla Ch0
+	DACB.CH0OFFSETCAL = 100;
+	DACB.CH0GAINCAL = 100;
 
 	DMA.CTRL =1<<7; //enable DMA
 	DMA.CH0.CTRLA = (1<<5) | (1<<2) | (1<<0); //repeat, single, 2-byte
@@ -38,11 +40,8 @@ void DACInit(void)
 	DMA.CH0.TRFCNT = 1024; //set 256Byte block
 	DMA.CH0.SRCADDR0  =(((uint16_t)(kan_out))>>0*8) & 0xFF;
 	DMA.CH0.SRCADDR1  =(((uint16_t)(kan_out))>>1*8) & 0xFF;
-	DMA.CH0.SRCADDR2  = 0;//(((uint32_t)(&kan_out))>>2*8) & 0xFF;
 	DMA.CH0.DESTADDR0 =(((uint16_t)(&DACB.CH0DATAL))>>0*8)&0xFF;
 	DMA.CH0.DESTADDR1 =(((uint16_t)(&DACB.CH0DATAL))>>1*8)&0xFF;
-	DMA.CH0.DESTADDR2 = 0;//(((uint32_t)(&DACB.CH0DATAH))>>2*8)&0xFF;
-	//DMA.CH0.CTRLA |= 1<<7; //enable ch1
 }
 
 /********************************************//**
@@ -51,7 +50,7 @@ void DACInit(void)
  ***********************************************/
 void DACOff(void)
 {
-	DMA.CH0.CTRLA &= ~(1<<7); //disable ch1 //disable ch1
+	DMA.CH0.CTRLA &= ~(1<<7); //disable ch1
 	DACB.CTRLB = 0; //trigger off
 	TCD0.CTRLA = 0;      // timer off state
 	DACB.CH0DATA = 2048; //set output to 0V
@@ -70,10 +69,8 @@ void DACResizeDMA(uint16_t tab)
 	DMA.CH0.TRFCNT = tab<<1;
 	DMA.CH0.SRCADDR0  =(((uint16_t)(&kan_out))>>0*8) & 0xFF;
 	DMA.CH0.SRCADDR1  =(((uint16_t)(&kan_out))>>1*8) & 0xFF;
-	//DMA.CH0.SRCADDR2  = 0;//(((uint32_t)(&kan_out))>>2*8) & 0xFF;
 	DMA.CH0.DESTADDR0 =(((uint16_t)(&DACB.CH0DATAL))>>0*8)&0xFF;
 	DMA.CH0.DESTADDR1 =(((uint16_t)(&DACB.CH0DATAL))>>1*8)&0xFF;
-	//DMA.CH0.DESTADDR2 = 0;//(((uint32_t)(&DACB.CH0DATAH))>>2*8)&0xFF;
 	DMA.CH0.CTRLA |= 1<<7; //enable ch1
 }
 
@@ -87,10 +84,9 @@ void DACWriteCh0(uint16_t val)
 	DACB.CH0DATA = val;
 }
 
-
 /********************************************//**
  * @brief Funkcja kalibrujaca offset DAC
- * @param speed : wartosc zmiany (-128 - 127)
+ * @param val : wartosc zmiany (-128 - 127)
  * @return uint8_t : aktualna wartosc (0 - 255)
  ***********************************************/
 uint8_t DACOffsetCalib(int8_t val)
@@ -99,13 +95,15 @@ uint8_t DACOffsetCalib(int8_t val)
 	if((uint16_t)offset + val < 256 && offset + val >= 0)
 		offset+= val;
 	eeprom_write_byte(&e_offset, offset);
-	DACB.OFFSETCAL=offset;
+    
+	// POPRAWKA DLA ATxmega32A4U
+	DACB.CH0OFFSETCAL = offset;
 	return offset;
 }
 
 /********************************************//**
  * @brief Funkcja kalibrujaca wzmocnienie DAC
- * @param speed : wartosc zmiany (-128 - 127)
+ * @param val : wartosc zmiany (-128 - 127)
  * @return uint8_t : aktualna wartosc (0 - 255)
  ***********************************************/
 uint8_t DACGainCalib(int8_t val)
@@ -114,6 +112,8 @@ uint8_t DACGainCalib(int8_t val)
 	if((uint16_t)gain + val < 256 && gain + val >= 0)
 		gain+= val;
 	eeprom_write_byte(&e_gain, gain);
-	DACB.GAINCAL=gain;
+    
+	// POPRAWKA DLA ATxmega32A4U
+	DACB.CH0GAINCAL = gain;
 	return gain;
 }

@@ -27,7 +27,7 @@ extern uint8_t kan2_lcd[128];
 extern const int16_t sin_tab[640] PROGMEM;
 
 
-#define F_clk 2048000000  //x64 (dla wiêkszej rozdzielczoœci, regulacja +-(1/64)Hz)
+#define F_clk 2048000000  //x64 (dla wiêkszej rozdzielczo?ci, regulacja +-(1/64)Hz)
 #define F_max 32000000    //x64
 
 static int16_t range = 200;
@@ -51,9 +51,9 @@ void Dirac(void)
 	
 	for(uint16_t i=0; i<1024; i++)
 		kan1_in[i]=0;
-	for(uint8_t lp=0; lp<8; lp++) //uœrednianie 4 impulsów, aby zmniejszyæ moc szumu
+	for(uint8_t lp=0; lp<8; lp++) //u?rednianie 4 impulsów, aby zmniejszyæ moc szumu
 	{
-		DACB.CH0DATA=4095; //wyœlij impuls na wyjœcie DAC
+		DACB.CH0DATA=4095; //wy?lij impuls na wyj?cie DAC
 		//_delay_loop_1(2);
 		while(!(DACB.STATUS&1));
 		DACB.CH0DATA=0;
