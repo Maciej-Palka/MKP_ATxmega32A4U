@@ -17,7 +17,8 @@
 <p align="center">
   <img src="../../assets/20260629_171020.jpg" height="auto" width="600">
 </p>  
-#### Kable które wychodzą z regulatora należy przeciągnąć pod płytką aż do przełącznika
+
+#### Przewody które wychodzą z regulatora należy przeciągnąć pod płytką aż do przełącznika
 <p align="center">
   <img src="../../assets/20260629_171129.jpg" height="auto" width="600">
 </p>  
