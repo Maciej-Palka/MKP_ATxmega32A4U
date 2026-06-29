@@ -1,3 +1,5 @@
+<img width="1700" height="460" alt="readme-banner" src="4-Graphics/readme-banner.png" />
+
 Do kompilacji i wgrywania kodu użyto odpowiednio MPLAB X IDE i MPLAB IPE <br>
 W pobranym repo należy utworzyć projekt MPLAB i następnie dodać pliki źródłowe i nagłówkowe <br>
 Choose project -> microchip embedded -> ATXMEGA32A4 (A4U, trzeba zportować niektóre rzeczy pod A4U) -> X8C (v3.10) <br>
