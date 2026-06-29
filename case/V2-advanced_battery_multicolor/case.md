@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../assets/mkpMine.png" height="auto" width="600">
+  <img src="../../assets/mkpMine.png" height="auto" width="600">
 </p>  
 
 ## Druga wersja obudowy do projektu MKP
@@ -15,12 +15,12 @@
 ### Skłdanie obudowy
 #### W dolnej części obudowy znajduje się miejsce na baterię 9V oraz na regulator napięcia
 <p align="center">
-  <img src="../assets/20260629_171020.jpg" height="auto" width="600">
+  <img src="../../assets/20260629_171020.jpg" height="auto" width="600">
 </p>  
 #### Kable które wychodzą z regulatora należy przeciągnąć pod płytką aż do przełącznika
 <p align="center">
-  <img src="../assets/20260629_171129.jpg" height="auto" width="600">
+  <img src="../../assets/20260629_171129.jpg" height="auto" width="600">
 </p>  
 <p align="center">
-  <img src="../assets/20260629_171119.jpg" height="auto" width="600">
+  <img src="../../assets/20260629_171119.jpg" height="auto" width="600">
 </p>  
