@@ -19,3 +19,6 @@ Zostały stworzone dwie obudowy:
 - Druga wersja, bardziej zaawansowana, z wbudowanym układem na zasilanie z baterii 9V oraz jedna częśc wymaga drukarki z funckją mulitcolor znajduje się w folderze [case/V2-advanced_battery_multicolor](./case/V2-advanced_battery_multicolor), [instrukcja do tej obudowy](./case/V2-advanced_battery_multicolor/README.md)
 
 Obie obudowy posiadają pliki .f3d z programu Fusion360, druga wersja posiada również pliki .step
+
+## Uznania
+Orginalny projekt został stworzony Arkadiusza Hudzikowskiego jako AVT2999. Orginalną dokumentację do AVT2999 można znaleźć w tym repo, plik `AVT2999.pdf`
